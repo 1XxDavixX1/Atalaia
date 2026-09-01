@@ -3,364 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jovem, Como Anda Sua Vida?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Maria na Sagrada Escritura: Protagonista ou Figurante?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-<style>
-    :root {
-        --bg-yellow: #fff6e0;
-        --bg-pink: #ffe0eb;
-        --bg-blue: #e0f2ff;
-        --text-color: #333;
-        --text-light: #555;
-        --font-family: 'Montserrat', sans-serif;
-    }
+    <style>
+        :root {
+            --bg-gradient-1: #fbf6ec;
+            --bg-gradient-2: #f7e8ee;
+            --bg-gradient-3: #e8f1f8;
+            --primary-accent: #2c3e50;
+            --secondary-accent: #8b5d6c;
+            --gold-accent: #c59b27;
+            --text-color: #2b2b2b;
+            --text-light: #595959;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --font-main: 'Montserrat', sans-serif;
+            --font-title: 'Playfair Display', serif;
+        }
 
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: var(--font-family);
-        background: radial-gradient(
-            circle at 30% 30%, 
-            var(--bg-yellow) 0%, 
-            var(--bg-pink) 40%, 
-            var(--bg-blue) 100%
-        );
-        color: var(--text-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 40px 20px;
-        box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    .article-container {
-        width: 100%;
-        max-width: 800px;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        line-height: 1.8;
-        font-size: 1.1rem;
-    }
+        body {
+            margin: 0;
+            padding: 40px 15px;
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+            background-attachment: fixed;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    .title-main {
-        font-size: 2.5rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        text-align: center;
-        margin-top: 0;
-        margin-bottom: 10px;
-        color: #222;
-    }
-
-    .subtext-relation {
-        font-size: 1.2rem;
-        font-weight: 600;
-        text-align: center;
-        color: var(--text-light);
-        margin-bottom: 40px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    p {
-        margin-bottom: 20px;
-        color: #444;
-        text-align: justify;
-    }
-
-    strong {
-        color: #111;
-        font-weight: 700;
-    }
-
-    em {
-        display: block;
-        margin-top: 40px;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-left: 4px solid var(--text-color);
-        font-style: italic;
-        font-weight: 600;
-        text-align: center;
-        border-radius: 0 10px 10px 0;
-    }
-
-    .statue {
-        display: block;
-        width: 100%;
-        max-width: 250px;
-        height: auto;
-        margin: 40px auto 0;
-        border-radius: 15px;
-    }
-
-    @media (max-width: 600px) {
         .article-container {
-            padding: 30px 20px;
+            width: 100%;
+            max-width: 860px;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 60px 50px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06), 0 5px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 45px;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-accent), var(--gold-accent));
+            border-radius: 2px;
         }
 
         .title-main {
-            font-size: 1.8rem;
+            font-family: var(--font-title);
+            font-size: 2.3rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--primary-accent);
+            margin: 0 0 10px 0;
         }
 
-        .subtext-relation {
-            font-size: 1rem;
+        h2 {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: var(--secondary-accent);
+            margin-top: 40px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(139, 93, 108, 0.15);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-accent);
+            margin-top: 30px;
+            margin-bottom: 14px;
         }
 
         p {
-            text-align: left;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 18px;
+            text-align: justify;
         }
-    }
-</style>
+
+        blockquote {
+            margin: 25px 0;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid var(--secondary-accent);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        blockquote p {
+            margin: 0;
+            text-align: left;
+            color: #444;
+            font-weight: 500;
+        }
+
+        ul {
+            margin: 18px 0 24px 20px;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        strong {
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .statue {
+            display: block;
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .statue:hover {
+            transform: translateY(-4px);
+        }
+
+        .instagram-link {
+            display: inline-block;
+            margin: 15px 0 20px 0;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+        }
+
+        .blessing-text {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            color: var(--secondary-accent);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 35px 22px;
+                border-radius: 16px;
+            }
+
+            .title-main {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            h3 {
+                font-size: 1.15rem;
+            }
+
+            p, li {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-   <article>
-    <header>
-      <h1>Maria na Sagrada Escritura: protagonista ou figurante?</h1>
-    </header>
 
-    <section>
-      <h2>1. Introdução</h2>
-      <p>Quando falamos sobre Maria, é importante compreender qual é o lugar que ela ocupa dentro da história da salvação. Será que Maria aparece na Bíblia apenas como uma personagem secundária, ou a própria Escritura apresenta elementos que mostram um papel muito mais importante?</p>
-      <p>A Bíblia é um livro que nasceu no seio da Igreja. Por isso, a fé da Igreja e aquilo que encontramos nas Escrituras estão profundamente relacionados. É verdade que, ao longo da história, a compreensão da fé foi se desenvolvendo. Porém, as sementes dessa compreensão já estavam presentes desde o início.</p>
-      <p>Nesta reflexão, vamos observar algumas dessas “sementes” presentes na Sagrada Escritura e perceber como elas foram sendo compreendidas e desenvolvidas ao longo da história da Igreja, sob a ação do Espírito Santo.</p>
-      <p>O objetivo é compreender que Maria não é uma simples figurante na história da salvação. Ela possui um papel importante no plano de Deus e, por isso, queremos perceber o que a própria Escritura nos apresenta sobre ela.</p>
-      <p>Para isso, precisamos compreender também uma forma tradicional de interpretar a Bíblia:</p>
-      <blockquote>
-        <p>“O Novo Testamento está oculto no Antigo, e o Antigo está patente no Novo.”</p>
-      </blockquote>
-      <p>Santo Agostinho expressou essa ideia da seguinte maneira:</p>
-      <blockquote>
-        <p><em>“Novum Testamentum in Vetere latet, Vetus Testamentum in Novo patet.”</em></p>
-      </blockquote>
-      <p>Em outras palavras, muitas coisas que aparecem no Novo Testamento já estavam sendo preparadas ou prefiguradas no Antigo Testamento. Quando chegamos ao Novo Testamento, aquilo que antes era uma figura encontra seu cumprimento e sua manifestação.</p>
+    <div class="article-container">
+        <article>
+            <header>
+                <h1 class="title-main">Maria na Sagrada Escritura: protagonista ou figurante?</h1>
+            </header>
 
-      <h3>Um exemplo</h3>
-      <p>Em Números 21,9, encontramos o episódio da serpente de bronze. Moisés coloca uma serpente de bronze sobre uma haste e, quando alguém que havia sido mordido por uma serpente olhava para ela, ficava curado.</p>
-      <p>No Evangelho de João, o próprio Jesus interpreta esse acontecimento como uma preparação para aquilo que aconteceria com Ele:</p>
-      <blockquote>
-        <p>“Como Moisés levantou a serpente no deserto, assim também é necessário que o Filho do Homem seja levantado, para que todo aquele que nele crer tenha a vida eterna.” (Jo 3,14-15)</p>
-      </blockquote>
-      <p>Assim, vemos que o próprio Cristo utiliza um acontecimento do Antigo Testamento para explicar uma realidade do Novo Testamento.</p>
-      <p>É com essa forma de compreender as Escrituras que podemos observar também a presença de Maria na história da salvação.</p>
-    </section>
+            <section>
+                <h2>1. Introdução</h2>
+                <p>Quando falamos sobre Maria, é importante compreender qual é o lugar que ela ocupa dentro da história da salvação. Será que Maria aparece na Bíblia apenas como uma personagem secundária, ou a própria Escritura apresenta elementos que mostram um papel muito mais importante?</p>
+                <p>A Bíblia é um livro que nasceu no seio da Igreja. Por isso, a fé da Igreja e aquilo que encontramos nas Escrituras estão profundamente relacionados. É verdade que, ao longo da história, a compreensão da fé foi se desenvolvendo. Porém, as sementes dessa compreensão já estavam presentes desde o início.</p>
+                <p>Nesta reflexão, vamos observar algumas dessas “sementes” presentes na Sagrada Escritura e perceber como elas foram sendo compreendidas e desenvolvidas ao longo da história da Igreja, sob a ação do Espírito Santo.</p>
+                <p>O objetivo é compreender que Maria não é uma simples figurante na história da salvação. Ela possui um papel importante no plano de Deus e, por isso, queremos perceber o que a própria Escritura nos apresenta sobre ela.</p>
+                <p>Para isso, precisamos compreender também uma forma tradicional de interpretar a Bíblia:</p>
+                <blockquote>
+                    <p>“O Novo Testamento está oculto no Antigo, e o Antigo está patente no Novo.”</p>
+                </blockquote>
+                <p>Santo Agostinho expressou essa ideia da seguinte maneira:</p>
+                <blockquote>
+                    <p><em>“Novum Testamentum in Vetere latet, Vetus Testamentum in Novo patet.”</em></p>
+                </blockquote>
+                <p>Em outras palavras, muitas coisas que aparecem no Novo Testamento já estavam sendo preparadas ou prefiguradas no Antigo Testamento. Quando chegamos ao Novo Testamento, aquilo que antes era uma figura encontra seu cumprimento e sua manifestação.</p>
 
-    <section>
-      <h2>2. Maria na história da salvação</h2>
+                <h3>Um exemplo</h3>
+                <p>Em Números 21,9, encontramos o episódio da serpente de bronze. Moisés coloca uma serpente de bronze sobre uma haste e, quando alguém que havia sido mordido por uma serpente olhava para ela, ficava curado.</p>
+                <p>No Evangelho de João, o próprio Jesus interpreta esse acontecimento como uma preparação para aquilo que aconteceria com Ele:</p>
+                <blockquote>
+                    <p>“Como Moisés levantou a serpente no deserto, assim também é necessário que o Filho do Homem seja levantado, para que todo aquele que nele crer tenha a vida eterna.” (Jo 3,14-15)</p>
+                </blockquote>
+                <p>Assim, vemos que o próprio Cristo utiliza um acontecimento do Antigo Testamento para explicar uma realidade do Novo Testamento.</p>
+                <p>É com essa forma de compreender as Escrituras que podemos observar também a presença de Maria na história da salvação.</p>
+            </section>
 
-      <section>
-        <h3>2.1 Maria é a Nova Eva</h3>
-        <p>Para compreender Maria como Nova Eva, precisamos voltar ao começo da história bíblica.</p>
-        <p>No início, Deus cria o céu e a terra, cria o homem e a mulher e vê que tudo era muito bom. Não havia sofrimento, dor ou morte.</p>
-        <p>Deus concede à humanidade todos os bens, mas estabelece uma proibição: não comer do fruto da árvore do conhecimento do bem e do mal.</p>
-        <p>Na tradição apresentada neste estudo, essa árvore representa também o poder de decidir sobre o bem e o mal, algo que pertence somente a Deus.</p>
-        <p>É nesse contexto que aparece a serpente, identificada com o diabo. Ela se aproxima da mulher e a conduz à desobediência. O homem e a mulher desobedecem a Deus e, como consequência, o pecado e a morte entram no mundo.</p>
-        <p>Mas Deus não abandona a humanidade.</p>
-        <p>Mesmo depois da queda, Deus estabelece um plano de salvação. E, nesse plano, encontramos uma espécie de correspondência entre a queda e a redenção:</p>
-        <ul>
-          <li>Se a queda envolveu um homem e uma mulher, a salvação envolveria novamente um homem e uma mulher.</li>
-          <li>Se um anjo mau se dirigiu à mulher para conduzi-la à desobediência, um anjo bom se dirigiria a uma mulher para anunciar uma mensagem que conduziria à obediência da fé.</li>
-          <li>Se o pecado entrou no mundo por meio de um fruto associado à árvore, a salvação viria por meio do fruto da cruz: Cristo.</li>
-          <li>Se Jesus é apresentado como o Novo Adão, Maria é apresentada como a Nova Eva.</li>
-        </ul>
-        <p>Existe ainda uma relação interessante entre o início da criação e o início da nova criação.</p>
-        <p>O livro do Gênesis começa com:</p>
-        <blockquote>
-          <p>“No princípio, Deus...”</p>
-        </blockquote>
-        <p>E o Evangelho de João começa dizendo:</p>
-        <blockquote>
-          <p>“No princípio era o Verbo...”</p>
-        </blockquote>
-        <p>A primeira criação encontra sua renovação em Cristo. E, nessa nova criação, Maria possui um papel especial como a mulher que responde a Deus com fé e obediência.</p>
-      </section>
+            <section>
+                <h2>2. Maria na história da salvação</h2>
 
-      <section>
-        <h3>2.2 Maria é nossa grande intercessora</h3>
-        <p>Um dos episódios mais importantes para compreender a intercessão de Maria está no Evangelho de João, nas bodas de Caná (Jo 2,1-12).</p>
-        <p>O Evangelho começa destacando a presença de Maria:</p>
-        <blockquote>
-          <p>“A mãe de Jesus estava lá. Jesus e seus discípulos foram convidados para o casamento.” (Jo 2,1-2)</p>
-        </blockquote>
-        <p>Isso chama a atenção porque Maria aparece logo no início do relato.</p>
-        <p>Durante a festa, surge um problema: o vinho acaba.</p>
-        <p>Maria percebe a situação e leva essa necessidade até Jesus. Ela não realiza o milagre, mas apresenta a necessidade a seu Filho.</p>
-        <p>Jesus responde que ainda não havia chegado a sua hora. Mesmo assim, Ele realiza o milagre.</p>
-        <p>Esse episódio pode ser compreendido como uma imagem da intercessão de Maria: ela percebe uma necessidade, apresenta essa necessidade a Jesus e participa, dessa maneira, da manifestação de sua ação.</p>
-        <p>Existe também uma comparação importante com Eva.</p>
-        <p>Eva, no início da história, participa da queda de Adão ao conduzi-lo à desobediência. Maria, a Nova Eva, aparece em Caná conduzindo a situação para uma ação de Cristo.</p>
-        <p>Assim:</p>
-        <ul>
-          <li>Eva &rarr; desobediência &rarr; queda</li>
-          <li>Maria &rarr; intercessão &rarr; manifestação da ação de Cristo</li>
-        </ul>
-        <p>Deus possui um plano de salvação e determina o momento em que as coisas acontecem. Ainda assim, quis que a Escritura registrasse uma situação na qual Maria apresenta um pedido e Jesus, mesmo dizendo que sua hora ainda não havia chegado, realiza uma intervenção.</p>
-        <p>Dentro da interpretação apresentada neste estudo, Caná mostra o lugar especial da intercessão de Maria.</p>
-        <p>Ela é apresentada como aquela que ajuda a conduzir os homens para Cristo, como uma espécie de “mestre-sala” das graças: não ocupa o lugar de Jesus, mas conduz a Ele.</p>
-        <p>Por isso, a pergunta que permanece é: Se Deus quis que Maria tivesse esse papel de intercessão, por que não recorrer a ela?</p>
-      </section>
+                <section>
+                    <h3>2.1 Maria é a Nova Eva</h3>
+                    <p>Para compreender Maria como Nova Eva, precisamos voltar ao começo da história bíblica.</p>
+                    <p>No início, Deus cria o céu e a terra, cria o homem e a mulher e vê que tudo era muito bom. Não havia sofrimento, dor ou morte.</p>
+                    <p>Deus concede à humanidade todos os bens, mas estabelece uma proibição: não comer do fruto da árvore do conhecimento do bem e do mal.</p>
+                    <p>Na tradição apresentada neste estudo, essa árvore representa também o poder de decidir sobre o bem e o mal, algo que pertence somente a Deus.</p>
+                    <p>É nesse contexto que aparece a serpente, identificada com o diabo. Ela se aproxima da mulher e a conduz à desobediência. O homem e a mulher desobedecem a Deus e, como consequência, o pecado e a morte entram no mundo.</p>
+                    <p>Mas Deus não abandona a humanidade.</p>
+                    <p>Mesmo depois da queda, Deus estabelece um plano de salvação. E, nesse plano, encontramos uma espécie de correspondência entre a queda e a redenção:</p>
+                    <ul>
+                        <li>Se a queda envolveu um homem e uma mulher, a salvação envolveria novamente um homem e uma mulher.</li>
+                        <li>Se um anjo mau se dirigiu à mulher para conduzi-la à desobediência, um anjo bom se dirigiria a uma mulher para anunciar uma mensagem que conduziria à obediência da fé.</li>
+                        <li>Se o pecado entrou no mundo por meio de um fruto associado à árvore, a salvação viria por meio do fruto da cruz: Cristo.</li>
+                        <li>Se Jesus é apresentado como o Novo Adão, Maria é apresentada como a Nova Eva.</li>
+                    </ul>
+                    <p>Existe ainda uma relação interessante entre o início da criação e o início da nova criação.</p>
+                    <p>O livro do Gênesis começa com:</p>
+                    <blockquote>
+                        <p>“No princípio, Deus...”</p>
+                    </blockquote>
+                    <p>E o Evangelho de João começa dizendo:</p>
+                    <blockquote>
+                        <p>“No princípio era o Verbo...”</p>
+                    </blockquote>
+                    <p>A primeira criação encontra sua renovação em Cristo. E, nessa nova criação, Maria possui um papel especial como a mulher que responde a Deus com fé e obediência.</p>
+                </section>
 
-      <section>
-        <h3>2.3 Maria é nossa mãe</h3>
-        <p>Outro momento fundamental aparece quando Jesus está na cruz.</p>
-        <p>No Evangelho de João, Jesus olha para sua mãe e diz:</p>
-        <blockquote>
-          <p>“Mulher, eis aí o teu filho.”</p>
-        </blockquote>
-        <p>Depois, dirigindo-se ao discípulo:</p>
-        <blockquote>
-          <p>“Eis tua mãe!”</p>
-        </blockquote>
-        <p>E o Evangelho continua:</p>
-        <blockquote>
-          <p>“E a partir dessa hora, o discípulo a recebeu em sua casa.” (Jo 19,26-27)</p>
-        </blockquote>
-        <p>Esse episódio é compreendido como um momento importante para entender Maria como mãe dos discípulos de Jesus.</p>
-        <p>No Gênesis, Eva recebe um nome relacionado à maternidade: Eva significa “Mãe dos viventes”.</p>
-        <p>Maria, apresentada como a Nova Eva, passa a ser compreendida como a mãe daqueles que pertencem a Cristo. Por isso, a tradição cristã a reconhece como Mãe da Igreja.</p>
-        <p>Essa maternidade aparece também no livro do Apocalipse.</p>
-        <p>Apocalipse 12,17 afirma que o Dragão vai guerrear contra o restante da descendência da Mulher, isto é, contra aqueles que guardam os mandamentos de Deus e mantêm o testemunho de Jesus.</p>
-        <p>Assim, os descendentes da Mulher são compreendidos como aqueles que pertencem a Cristo.</p>
-        <p>Há, portanto, uma ligação entre Gênesis e Apocalipse.</p>
-        <p>Em Gênesis 3,15, Deus diz:</p>
-        <blockquote>
-          <p>“Porei inimizade entre ti e a mulher, entre a tua descendência e a dela.”</p>
-        </blockquote>
-        <p>No início da história, aparece a Mulher em conflito com a serpente. No final da história bíblica, encontramos novamente a Mulher e o Dragão.</p>
-        <p>A história da salvação começa com essa promessa e caminha para sua realização em Cristo.</p>
-        <p>Por isso, a vida cristã pode ser entendida como uma batalha contra o mal. A vitória, porém, já foi conquistada por Cristo.</p>
-        <p>A promessa de Gênesis aponta para aquele que vencerá a serpente. Da Mulher vem Cristo, o vencedor.</p>
-        <p>Por isso, a espiritualidade mariana apresentada neste estudo afirma que precisamos ser “gerados em Maria”, para que Cristo também nasça em nós.</p>
-      </section>
+                <section>
+                    <h3>2.2 Maria é nossa grande intercessora</h3>
+                    <p>Um dos episódios mais importantes para compreender a intercessão de Maria está no Evangelho de João, nas bodas de Caná (Jo 2,1-12).</p>
+                    <p>O Evangelho começa destacando a presença de Maria:</p>
+                    <blockquote>
+                        <p>“A mãe de Jesus estava lá. Jesus e seus discípulos foram convidados para o casamento.” (Jo 2,1-2)</p>
+                    </blockquote>
+                    <p>Isso chama a atenção porque Maria aparece logo no início do relato.</p>
+                    <p>Durante a festa, surge um problema: o vinho acaba.</p>
+                    <p>Maria percebe a situação e leva essa necessidade até Jesus. Ela não realiza o milagre, mas apresenta a necessidade a seu Filho.</p>
+                    <p>Jesus responde que ainda não havia chegado a sua hora. Mesmo assim, Ele realiza o milagre.</p>
+                    <p>Esse episódio pode ser compreendido como uma imagem da intercessão de Maria: ela percebe uma necessidade, apresenta essa necessidade a Jesus e participa, dessa maneira, da manifestação de sua ação.</p>
+                    <p>Existe também uma comparação importante com Eva.</p>
+                    <p>Eva, no início da história, participa da queda de Adão ao conduzi-lo à desobediência. Maria, a Nova Eva, aparece em Caná conduzindo a situação para uma ação de Cristo.</p>
+                    <p>Assim:</p>
+                    <ul>
+                        <li>Eva &rarr; desobediência &rarr; queda</li>
+                        <li>Maria &rarr; intercessão &rarr; manifestação da ação de Cristo</li>
+                    </ul>
+                    <p>Deus possui um plano de salvação e determina o momento em que as coisas acontecem. Ainda assim, quis que a Escritura registrasse uma situação na qual Maria apresenta um pedido e Jesus, mesmo dizendo que sua hora ainda não havia chegado, realiza uma intervenção.</p>
+                    <p>Dentro da interpretação apresentada neste estudo, Caná mostra o lugar especial da intercessão de Maria.</p>
+                    <p>Ela é apresentada como aquela que ajuda a conduzir os homens para Cristo, como uma espécie de “mestre-sala” das graças: não ocupa o lugar de Jesus, mas conduz a Ele.</p>
+                    <p>Por isso, a pergunta que permanece é: Se Deus quis que Maria tivesse esse papel de intercessão, por que não recorrer a ela?</p>
+                </section>
 
-      <section>
-        <h3>2.4 Maria é a Imaculada Conceição</h3>
-        <p>Outro aspecto importante da compreensão sobre Maria está relacionado à Anunciação.</p>
-        <p>O anjo Gabriel é enviado por Deus a Nazaré, na Galileia, a uma virgem chamada Maria.</p>
-        <p>Ao encontrá-la, o anjo diz:</p>
-        <blockquote>
-          <p>“Ave, cheia de graça!”</p>
-        </blockquote>
-        <p>No texto grego, a expressão utilizada é <span lang="el">κεχαριτωμένη</span> (<em>kecharitōménē</em>).</p>
-        <p>O termo é apresentado como uma forma verbal que indica uma ação realizada e cujos efeitos permanecem.</p>
-        <p>Além disso, a forma passiva indica que Maria recebeu essa graça de Deus. Não se trata de algo que ela tenha conquistado por suas próprias forças.</p>
-        <p>A expressão, portanto, é entendida como uma indicação de que Maria foi plenamente agraciada por Deus.</p>
-        <p>A partir dessa interpretação, compreende-se que Maria já se encontrava nesse estado de graça quando recebeu o anúncio do anjo.</p>
-        <p>Essa compreensão está relacionada ao dogma da Imaculada Conceição, proclamado pelo Papa Pio IX em 1854, por meio da <em>Ineffabilis Deus</em>.</p>
-        <p>O dogma ensina que Maria foi preservada de toda mancha do pecado original desde o primeiro instante de sua concepção, em vista dos méritos de Cristo.</p>
-        <p>Assim, a graça recebida por Maria não seria apenas algo concedido no momento da Anunciação. Deus já havia realizado nela uma ação anterior, preparando-a para sua missão de ser a Mãe do Salvador.</p>
-        <p>Podemos fazer uma comparação simples: Imagine uma pessoa que foi escolhida para determinada missão no passado e continua sendo a escolhida no presente.</p>
-        <p>Da mesma forma, Maria é apresentada como aquela que recebeu uma graça especial de Deus desde antes do anúncio do anjo.</p>
-      </section>
+                <section>
+                    <h3>2.3 Maria é nossa mãe</h3>
+                    <p>Outro momento fundamental aparece quando Jesus está na cruz.</p>
+                    <p>No Evangelho de João, Jesus olha para sua mãe e diz:</p>
+                    <blockquote>
+                        <p>“Mulher, eis aí o teu filho.”</p>
+                    </blockquote>
+                    <p>Depois, dirigindo-se ao discípulo:</p>
+                    <blockquote>
+                        <p>“Eis tua mãe!”</p>
+                    </blockquote>
+                    <p>E o Evangelho continua:</p>
+                    <blockquote>
+                        <p>“E a partir dessa hora, o discípulo a recebeu em sua casa.” (Jo 19,26-27)</p>
+                    </blockquote>
+                    <p>Esse episódio é compreendido como um momento importante para entender Maria como mãe dos discípulos de Jesus.</p>
+                    <p>No Gênesis, Eva recebe um nome relacionado à maternidade: Eva significa “Mãe dos viventes”.</p>
+                    <p>Maria, apresentada como a Nova Eva, passa a ser compreendida como a mãe daqueles que pertencem a Cristo. Por isso, a tradição cristã a reconhece como Mãe da Igreja.</p>
+                    <p>Essa maternidade aparece também no livro do Apocalipse.</p>
+                    <p>Apocalipse 12,17 afirma que o Dragão vai guerrear contra o restante da descendência da Mulher, isto é, contra aqueles que guardam os mandamentos de Deus e mantêm o testemunho de Jesus.</p>
+                    <p>Assim, os descendentes da Mulher são compreendidos como aqueles que pertencem a Cristo.</p>
+                    <p>Há, portanto, uma ligação entre Gênesis e Apocalipse.</p>
+                    <p>Em Gênesis 3,15, Deus diz:</p>
+                    <blockquote>
+                        <p>“Porei inimizade entre ti e a mulher, entre a tua descendência e a dela.”</p>
+                    </blockquote>
+                    <p>No início da história, aparece a Mulher em conflito com a serpente. No final da história bíblica, encontramos novamente a Mulher e o Dragão.</p>
+                    <p>A história da salvação começa com essa promessa e caminha para sua realização em Cristo.</p>
+                    <p>Por isso, a vida cristã pode ser entendida como uma batalha contra o mal. A vitória, porém, já foi conquistada por Cristo.</p>
+                    <p>A promessa de Gênesis aponta para aquele que vencerá a serpente. Da Mulher vem Cristo, o vencedor.</p>
+                    <p>Por isso, a espiritualidade mariana apresentada neste estudo afirma que precisamos ser “gerados em Maria”, para que Cristo também nasça em nós.</p>
+                </section>
 
-      <section>
-        <h3>2.5 Maria é a Arca da Nova Aliança</h3>
-        <p>Para compreender Maria como Arca da Nova Aliança, precisamos primeiro entender o significado da Arca da Aliança no Antigo Testamento.</p>
-        <p>A Arca era um dos objetos mais importantes para o povo de Israel.</p>
-        <p>Deus determinou que ela fosse construída com medidas específicas e com materiais considerados os mais puros. Ela deveria guardar objetos sagrados e estava relacionada à presença de Deus.</p>
-        <p>Entre aquilo que a antiga Arca guardava estavam:</p>
-        <ul>
-          <li>as tábuas da Lei;</li>
-          <li>o maná;</li>
-          <li>o cajado de Aarão.</li>
-        </ul>
-        <p>Na interpretação apresentada neste estudo, esses elementos encontram seu cumprimento em Cristo:</p>
-        <ul>
-          <li>as tábuas da Lei apontam para a Palavra;</li>
-          <li>o maná aponta para o verdadeiro Pão do Céu;</li>
-          <li>o cajado de Aarão aponta para o verdadeiro sacerdote.</li>
-        </ul>
-        <p>Maria seria, portanto, a Nova Arca, porque carregou em seu ventre o próprio Cristo, a Palavra que se fez carne.</p>
-        <p>Existe ainda uma comparação entre a Arca e Maria no Evangelho de Lucas.</p>
-        <p>Davi, ao encontrar-se diante da Arca, pergunta:</p>
-        <blockquote>
-          <p>“Como entrará a arca do Senhor em minha casa?” (2Sm 6)</p>
-        </blockquote>
-        <p>Séculos depois, Isabel, ao receber Maria, pergunta:</p>
-        <blockquote>
-          <p>“Donde me vem esta honra de vir a mim a mãe de meu Senhor?” (Lc 1,43)</p>
-        </blockquote>
-        <p>Há também outras semelhanças.</p>
-        <p>A Arca permaneceu durante três meses na casa de Obed-Edom, e sua presença foi associada à bênção daquela família.</p>
-        <p>Maria permaneceu aproximadamente três meses com Isabel:</p>
-        <blockquote>
-          <p>“Maria ficou com Isabel cerca de três meses. Depois voltou para casa.” (Lc 1,56)</p>
-        </blockquote>
-        <p>Outro paralelo aparece na reação de Davi diante da Arca. Davi dança diante dela, enquanto João Batista salta de alegria no ventre de Isabel diante da presença de Maria, que carregava em seu ventre o próprio Senhor.</p>
-        <p>Assim, a antiga Arca é compreendida como uma figura que encontra seu cumprimento em Maria.</p>
-        <p>A antiga Arca carregava elementos sagrados; Maria carregava o próprio Deus feito homem.</p>
-        <p>Por isso, a interpretação apresentada neste estudo vê em Maria a Arca da Nova Aliança.</p>
-        <p>Essa relação também é associada ao livro do Apocalipse. João contempla a Arca da Aliança no céu e, logo depois, aparece a figura de uma Mulher.</p>
-        <p>A tradição interpreta essa Mulher como uma imagem relacionada a Maria.</p>
-        <p>Por fim, o Salmo 132 apresenta a Arca sendo conduzida ao lugar de repouso do Senhor, enquanto o Salmo 45 apresenta uma figura real entrando no palácio, vestida com grande dignidade.</p>
-        <p>Essas imagens são relacionadas à compreensão de Maria como aquela que foi elevada ao céu.</p>
-      </section>
+                <section>
+                    <h3>2.4 Maria é a Imaculada Conceição</h3>
+                    <p>Outro aspecto importante da compreensão sobre Maria está relacionado à Anunciação.</p>
+                    <p>O anjo Gabriel é enviado por Deus a Nazaré, na Galileia, a uma virgem chamada Maria.</p>
+                    <p>Ao encontrá-la, o anjo diz:</p>
+                    <blockquote>
+                        <p>“Ave, cheia de graça!”</p>
+                    </blockquote>
+                    <p>No texto grego, a expressão utilizada é <span lang="el">κεχαριτωμένη</span> (<em>kecharitōménē</em>).</p>
+                    <p>O termo é apresentado como uma forma verbal que indica uma ação realizada e cujos efeitos permanecem.</p>
+                    <p>Além disso, a forma passiva indica que Maria recebeu essa graça de Deus. Não se trata de algo que ela tenha conquistado por suas próprias forças.</p>
+                    <p>A expressão, portanto, é entendida como uma indicação de que Maria foi plenamente agraciada por Deus.</p>
+                    <p>A partir dessa interpretação, compreende-se que Maria já se encontrava nesse estado de graça quando recebeu o anúncio do anjo.</p>
+                    <p>Essa compreensão está relacionada ao dogma da Imaculada Conceição, proclamado pelo Papa Pio IX em 1854, por meio da <em>Ineffabilis Deus</em>.</p>
+                    <p>O dogma ensina que Maria foi preservada de toda mancha do pecado original desde o primeiro instante de sua concepção, em vista dos méritos de Cristo.</p>
+                    <p>Assim, a graça recebida por Maria não seria apenas algo concedido no momento da Anunciação. Deus já havia realizado nela uma ação anterior, preparando-a para sua missão de ser a Mãe do Salvador.</p>
+                    <p>Podemos fazer uma comparação simples: Imagine uma pessoa que foi escolhida para determinada missão no passado e continua sendo a escolhida no presente.</p>
+                    <p>Da mesma forma, Maria é apresentada como aquela que recebeu uma graça especial de Deus desde antes do anúncio do anjo.</p>
+                </section>
 
-      <section>
-        <h3>2.6 Maria é Rainha do céu e da terra</h3>
-        <p>Para compreender Maria como Rainha, precisamos primeiro olhar para a figura do rei Davi.</p>
-        <p>O anjo Gabriel anuncia a Maria:</p>
-        <blockquote>
-          <p>“O Senhor Deus lhe dará o trono de seu pai Davi.” (Lc 1,32)</p>
-        </blockquote>
-        <p>Jesus é, portanto, apresentado como aquele que recebe o trono de Davi.</p>
-        <p>Na tradição da monarquia de Israel, existia uma figura especialmente importante: a Rainha-Mãe, conhecida como <em>Gebirá</em>.</p>
-        <p>Como os reis podiam possuir várias esposas, a posição de rainha não era simplesmente ocupada pela esposa do rei. A mãe do rei possuía uma posição especial junto a ele.</p>
-        <p>O Salmo 45 apresenta:</p>
-        <blockquote>
-          <p>“À sua direita se encontra a Rainha...”</p>
-        </blockquote>
-        <p>A partir dessa compreensão, se Jesus é o Rei eterno e recebe o trono de Davi, sua mãe ocupa o lugar correspondente à Rainha-Mãe.</p>
-        <p>Maria, portanto, é compreendida como Rainha-Mãe, Rainha do céu.</p>
-        <p>Essa imagem também aparece associada ao Apocalipse 12.</p>
-        <p>João contempla uma Mulher:</p>
-        <ul>
-          <li>vestida de sol;</li>
-          <li>com a lua debaixo dos pés;</li>
-          <li>usando uma coroa de doze estrelas;</li>
-          <li>e dando à luz um filho que regerá as nações com cetro de ferro.</li>
-        </ul>
-        <p>A Mulher aparece, portanto, relacionada ao nascimento daquele que reinará.</p>
-        <p>Existe ainda outro exemplo no Antigo Testamento.</p>
-        <p>A mãe de Salomão aproxima-se do rei para apresentar um pedido. Ela possui uma posição especial diante do rei e pode interceder em favor de alguém.</p>
-        <p>Essa figura ajuda a compreender, dentro da tradição apresentada, o papel de Maria como Rainha-Mãe e intercessora.</p>
-      </section>
-    </section>
+                <section>
+                    <h3>2.5 Maria é a Arca da Nova Aliança</h3>
+                    <p>Para compreender Maria como Arca da Nova Aliança, precisamos primeiro entender o significado da Arca da Aliança no Antigo Testamento.</p>
+                    <p>A Arca era um dos objetos mais importantes para o povo de Israel.</p>
+                    <p>Deus determinou que ela fosse construída com medidas específicas e com materiais considerados os mais puros. Ela deveria guardar objetos sagrados e estava relacionada à presença de Deus.</p>
+                    <p>Entre aquilo que a antiga Arca guardava estavam:</p>
+                    <ul>
+                        <li>as tábuas da Lei;</li>
+                        <li>o maná;</li>
+                        <li>o cajado de Aarão.</li>
+                    </ul>
+                    <p>Na interpretação apresentada neste estudo, esses elementos encontram seu cumprimento em Cristo:</p>
+                    <ul>
+                        <li>as tábuas da Lei apontam para a Palavra;</li>
+                        <li>o maná aponta para o verdadeiro Pão do Céu;</li>
+                        <li>o cajado de Aarão aponta para o verdadeiro sacerdote.</li>
+                    </ul>
+                    <p>Maria seria, portanto, a Nova Arca, porque carregou em seu ventre o próprio Cristo, a Palavra que se fez carne.</p>
+                    <p>Existe ainda uma comparação entre a Arca e Maria no Evangelho de Lucas.</p>
+                    <p>Davi, ao encontrar-se diante da Arca, pergunta:</p>
+                    <blockquote>
+                        <p>“Como entrará a arca do Senhor em minha casa?” (2Sm 6)</p>
+                    </blockquote>
+                    <p>Séculos depois, Isabel, ao receber Maria, pergunta:</p>
+                    <blockquote>
+                        <p>“Donde me vem esta honra de vir a mim a mãe de meu Senhor?” (Lc 1,43)</p>
+                    </blockquote>
+                    <p>Há também outras semelhanças.</p>
+                    <p>A Arca permaneceu durante três meses na casa de Obed-Edom, e sua presença foi associada à bênção daquela família.</p>
+                    <p>Maria permaneceu aproximadamente três meses com Isabel:</p>
+                    <blockquote>
+                        <p>“Maria ficou com Isabel cerca de três meses. Depois voltou para casa.” (Lc 1,56)</p>
+                    </blockquote>
+                    <p>Outro paralelo aparece na reação de Davi diante da Arca. Davi dança diante dela, enquanto João Batista salta de alegria no ventre de Isabel diante da presença de Maria, que carregava em seu ventre o próprio Senhor.</p>
+                    <p>Assim, a antiga Arca é compreendida como uma figura que encontra seu cumprimento em Maria.</p>
+                    <p>A antiga Arca carregava elementos sagrados; Maria carregava o próprio Deus feito homem.</p>
+                    <p>Por isso, a interpretação apresentada neste estudo vê em Maria a Arca da Nova Aliança.</p>
+                    <p>Essa relação também é associada ao livro do Apocalipse. João contempla a Arca da Aliança no céu e, logo depois, aparece a figura de uma Mulher.</p>
+                    <p>A tradição interpreta essa Mulher como uma imagem relacionada a Maria.</p>
+                    <p>Por fim, o Salmo 132 apresenta a Arca sendo conduzida ao lugar de repouso do Senhor, enquanto o Salmo 45 apresenta uma figura real entrando no palácio, vestida com grande dignidade.</p>
+                    <p>Essas imagens são relacionadas à compreensão de Maria como aquela que foi elevada ao céu.</p>
+                </section>
 
-    <section>
-      <h2>3. Conclusão</h2>
-      <p>Depois de observar essas passagens, podemos perceber que Maria não aparece na história da salvação simplesmente como uma personagem secundária.</p>
-      <p>Ela está presente em momentos fundamentais.</p>
-      <p>Maria é apresentada como:</p>
-      <ul>
-        <li><strong>Nova Eva</strong>, em relação à desobediência de Eva e à obediência da fé;</li>
-        <li><strong>Mãe da Igreja</strong>, porque Jesus a entrega como mãe ao discípulo;</li>
-        <li><strong>Intercessora</strong>, especialmente representada nas bodas de Caná;</li>
-        <li><strong>Imaculada Conceição</strong>, por ter sido preservada da mancha do pecado original desde o primeiro instante de sua concepção, em vista dos méritos de Cristo;</li>
-        <li><strong>Arca da Nova Aliança</strong>, porque carregou em seu ventre a Palavra feita carne;</li>
-        <li><strong>Assunta aos céus</strong>, segundo a interpretação apresentada nas imagens bíblicas relacionadas à Arca e à Mulher;</li>
-        <li><strong>Rainha do céu e da terra</strong>, como Rainha-Mãe do Rei eterno.</li>
-      </ul>
-      <p>Dessa maneira, a proposta desta reflexão é reconhecer Maria como protagonista na história da salvação, e não como uma simples figurante.</p>
-      <p>Tudo aquilo que Maria é, porém, está relacionado à sua missão de conduzir a Cristo. Sua importância não diminui Jesus; pelo contrário, aponta para Ele.</p>
-      <p>Por isso, podemos concluir com o desejo de sempre recorrer à intercessão e ao cuidado materno de Maria, pedindo que, por sua visita e intercessão, recebamos o Espírito Santo, sejamos purificados, cresçamos em santidade e aprendamos a fazer aquilo que o Senhor Jesus nos pede.</p>
-    </section>
-  </article>
+                <section>
+                    <h3>2.6 Maria é Rainha do céu e da terra</h3>
+                    <p>Para compreender Maria como Rainha, precisamos primeiro olhar para a figura do rei Davi.</p>
+                    <p>O anjo Gabriel anuncia a Maria:</p>
+                    <blockquote>
+                        <p>“O Senhor Deus lhe dará o trono de seu pai Davi.” (Lc 1,32)</p>
+                    </blockquote>
+                    <p>Jesus é, portanto, apresentado como aquele que recebe o trono de Davi.</p>
+                    <p>Na tradição da monarquia de Israel, existia uma figura especialmente importante: a Rainha-Mãe, conhecida como <em>Gebirá</em>.</p>
+                    <p>Como os reis podiam possuir várias esposas, a posição de rainha não era simplesmente ocupada pela esposa do rei. A mãe do rei possuía uma posição especial junto a ele.</p>
+                    <p>O Salmo 45 apresenta:</p>
+                    <blockquote>
+                        <p>“À sua direita se encontra a Rainha...”</p>
+                    </blockquote>
+                    <p>A partir dessa compreensão, se Jesus é o Rei eterno e recebe o trono de Davi, sua mãe ocupa o lugar correspondente à Rainha-Mãe.</p>
+                    <p>Maria, portanto, é compreendida como Rainha-Mãe, Rainha do céu.</p>
+                    <p>Essa imagem também aparece associada ao Apocalipse 12.</p>
+                    <p>João contempla uma Mulher:</p>
+                    <ul>
+                        <li>vestida de sol;</li>
+                        <li>com a lua debaixo dos pés;</li>
+                        <li>usando uma coroa de doze estrelas;</li>
+                        <li>e dando à luz um filho que regerá as nações com cetro de ferro.</li>
+                    </ul>
+                    <p>A Mulher aparece, portanto, relacionada ao nascimento daquele que reinará.</p>
+                    <p>Existe ainda outro exemplo no Antigo Testamento.</p>
+                    <p>A mãe de Salomão aproxima-se do rei para apresentar um pedido. Ela possui uma posição especial diante do rei e pode interceder em favor de alguém.</p>
+                    <p>Essa figura ajuda a compreender, dentro da tradição apresentada, o papel de Maria como Rainha-Mãe e intercessora.</p>
+                </section>
+            </section>
 
-<!-- A classe .statue foi adicionada para garantir a responsividade e o arredondamento das bordas configurados no CSS -->
-<img src="jesus.png" alt="Jesus Cristo" class="statue">
+            <section>
+                <h2>3. Conclusão</h2>
+                <p>Depois de observar essas passagens, podemos perceber que Maria não aparece na história da salvação simplesmente como uma personagem secundária.</p>
+                <p>Ela está presente em momentos fundamentais.</p>
+                <p>Maria é apresentada como:</p>
+                <ul>
+                    <li><strong>Nova Eva:</strong> em relação à desobediência de Eva e à obediência da fé;</li>
+                    <li><strong>Mãe da Igreja:</strong> porque Jesus a entrega como mãe ao discípulo;</li>
+                    <li><strong>Intercessora:</strong> especialmente representada nas bodas de Caná;</li>
+                    <li><strong>Imaculada Conceição:</strong> por ter sido preservada da mancha do pecado original desde o primeiro instante de sua concepção, em vista dos méritos de Cristo;</li>
+                    <li><strong>Arca da Nova Aliança:</strong> porque carregou em seu ventre a Palavra feita carne;</li>
+                    <li><strong>Assunta aos céus:</strong> segundo a interpretação apresentada nas imagens bíblicas relacionadas à Arca e à Mulher;</li>
+                    <li><strong>Rainha do céu e da terra:</strong> como Rainha-Mãe do Rei eterno.</li>
+                </ul>
+                <p>Dessa maneira, a proposta desta reflexão é reconhecer Maria como protagonista na história da salvação, e não como uma simples figurante.</p>
+                <p>Tudo aquilo que Maria é, porém, está relacionado à sua missão de conduzir a Cristo. Sua importância não diminui Jesus; pelo contrário, aponta para Ele.</p>
+                <p>Por isso, podemos concluir com o desejo de sempre recorrer à intercessão e ao cuidado materno de Maria, pedindo que, por sua visita e intercessão, recebamos o Espírito Santo, sejamos purificados, cresçamos em santidade e aprendamos a fazer aquilo que o Senhor Jesus nos pede.</p>
+            </section>
+        </article>
 
-<a href="https://www.instagram.com/atalaiapsa?igsi=bWQ1cWNrd283NThv" target="_blank" class="instagram-link">Conheça o Atalaia-PSA</a>
-
-<p><strong>“Será muito bem-vindo, que Deus abençoe você e a sua família!!”</strong></p>
-
+        <footer class="cta-section">
+            <img src="jesus.png" alt="Jesus Cristo" class="statue">
+            <a href="https://www.instagram.com/atalaiapsa?igsi=bWQ1cWNrd283NThv" target="_blank" rel="noopener noreferrer" class="instagram-link">Conheça o Atalaia-PSA</a>
+            <p class="blessing-text">“Será muito bem-vindo, que Deus abençoe você e a sua família!!”</p>
+        </footer>
     </div>
+
 </body>
 </html>
