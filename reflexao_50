@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectio Divina - Salmo 50: O Clamor do Coração Contrito</title>
+    <style>
+        :root {
+            --bg-color: #f6f3ed;
+            --card-bg: #ffffff;
+            --primary: #4a2511;
+            --primary-light: #6e3c20;
+            --accent: #b8860b;
+            --text: #2c2c2c;
+            --text-muted: #666666;
+            --border: #dfd5c6;
+            --highlight: #f0e6d2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 30px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .context-box {
+            background: var(--highlight);
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            margin-top: 15px;
+            text-align: left;
+            color: var(--primary);
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: var(--border);
+            z-index: 1;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .step-node {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .step-node.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .step-node.completed {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: bold;
+        }
+
+        /* Views */
+        .phase {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .phase.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-guide {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        p.instruction {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Lectio - Sortable Stanzas */
+        .sortable-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sort-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .stanza-text {
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .btn-mini {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Meditatio & Oratio Cards */
+        .meditatio-card {
+            background: #faf7f2;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+
+        .meditatio-card h4 {
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .meditatio-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        textarea {
+            width: 100%;
+            height: 65px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: none;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Buttons Layout */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 10px;
+            flex: 2;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background: #8c7b70;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #6e5e54;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .btn-outline:hover {
+            background: var(--highlight);
+        }
+
+        .feedback {
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .feedback.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        .feedback.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .psalm-box {
+            text-align: center;
+            padding: 25px;
+            background: #faf7f2;
+            border: 2px double var(--accent);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Salmo 50 (51)</h1>
+        <div class="subtitle">O Clamor do Coração Contrito</div>
+        <div class="context-box">
+            <strong>Contexto Histórico:</strong> Composto após o profeta Natã confrontar o rei Davi pelo seu pecado com Betsabá e a morte de Urias (2 Samuel 11-12). Este salmo é a expressão máxima do arrependimento bíblico.
+        </div>
+    </header>
+
+    <!-- Indicador de Passos com os 4 Pilares da Lectio Divina -->
+    <div class="stepper">
+        <div class="step-item" onclick="goToPhase(1)">
+            <div class="step-node active" id="node-1">1</div>
+            <span class="step-label">Lectio</span>
+        </div>
+        <div class="step-item" onclick="goToPhase(2)">
+            <div class="step-node" id="node-2">2</div>
+            <span class="step-label">Meditatio</span>
+        </div>
+        <div class="step-item" onclick="goToPhase(3)">
+            <div class="step-node" id="node-3">3</div>
+            <span class="step-label">Oratio</span>
+        </div>
+        <div class="step-item" onclick="goToPhase(4)">
+            <div class="step-node" id="node-4">4</div>
+            <span class="step-label">Contemplatio</span>
+        </div>
+    </div>
+
+    <!-- FASE 1: LECTIO -->
+    <div class="phase active" id="phase-1">
+        <h2>1. Lectio (Leitura)</h2>
+        <div class="phase-guide">"O que diz o texto sagrado em si mesmo?"</div>
+        <p class="instruction">Ordene os quatro movimentos espirituais do Salmo 50 na sequência correta em que foram rezados por Davi:</p>
+        
+        <div id="lectio-feedback" class="feedback error">A sequência teológica do Salmo não está certa. Ajuste a ordem!</div>
+
+        <ul class="sortable-list" id="sortable-list">
+            <!-- Gerado dinamicamente via JS -->
+        </ul>
+
+        <button class="btn" onclick="checkLectio()">Verificar Sequência do Salmo</button>
+    </div>
+
+    <!-- FASE 2: MEDITATIO -->
+    <div class="phase" id="phase-2">
+        <h2>2. Meditatio (Meditação)</h2>
+        <div class="phase-guide">"O que o texto diz para a minha vida hoje?"</div>
+        <p class="instruction">Deixe que as imagens poéticas do Salmo 50 examinem a sua vida interior:</p>
+
+        <div class="meditatio-card">
+            <h4>"Reconheço a minha iniquidade, e o meu pecado está sempre diante de mim." (v. 5)</h4>
+            <p>O que você tem tentado justificar ou fingir que não existe em sua rotina?</p>
+            <textarea id="meditatio-1" placeholder="Medite e escreva aqui..."></textarea>
+        </div>
+
+        <div class="meditatio-card">
+            <h4>"Cria em mim, ó Deus, um coração puro..." (v. 12)</h4>
+            <p>Em qual área da sua vida você precisa de um 'recomeço do zero' que só a graça pode realizar?</p>
+            <textarea id="meditatio-2" placeholder="Medite e escreva aqui..."></textarea>
+        </div>
+
+        <div class="meditatio-card">
+            <h4>"Abre, Senhor, os meus lábios, e a minha boca anunciará o teu louvor." (v. 17)</h4>
+            <p>Como a experiência do perdão de Deus pode mudar o seu modo de falar e tratar os outros?</p>
+            <textarea id="meditatio-3" placeholder="Medite e escreva aqui..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-secondary" onclick="goToPhase(1)">Voltar</button>
+            <button class="btn" style="margin-top:0;" onclick="advanceToPhase(3)">Guardar as Reflexões e Avançar</button>
+        </div>
+    </div>
+
+    <!-- FASE 3: ORATIO -->
+    <div class="phase" id="phase-3">
+        <h2>3. Oratio (Oração)</h2>
+        <div class="phase-guide">"O que eu digo a Deus a partir do texto lido?"</div>
+        <p class="instruction">Transforme as estrofes do Salmo 50 em sua prece pessoal. Complete cada versículo com sua intenção concreta:</p>
+
+        <div class="meditatio-card">
+            <p style="color:var(--primary); font-weight:bold; font-style:normal;">"Tende piedade de mim, ó Deus, segundo a vossa misericórdia..." (v. 3)</p>
+            <textarea id="oratio-1" placeholder="Senhor, clamo por tua misericórdia especificamente sobre..."></textarea>
+        </div>
+
+        <div class="meditatio-card">
+            <p style="color:var(--primary); font-weight:bold; font-style:normal;">"Lava-me inteiramente da minha iniquidade..." (v. 4)</p>
+            <textarea id="oratio-2" placeholder="Lava o meu coração de sentimentos de..."></textarea>
+        </div>
+
+        <div class="meditatio-card">
+            <p style="color:var(--primary); font-weight:bold; font-style:normal;">"Restitui-me a alegria da tua salvação..." (v. 14)</p>
+            <textarea id="oratio-3" placeholder="Devolve-me a paz e a alegria naquilo que perdi quando..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-secondary" onclick="goToPhase(2)">Voltar</button>
+            <button class="btn" style="margin-top:0;" onclick="advanceToPhase(4)">Entregar a Oração e Avançar</button>
+        </div>
+    </div>
+
+    <!-- FASE 4: CONTEMPLATIO & ACTIO -->
+    <div class="phase" id="phase-4">
+        <h2>4. Contemplatio & Actio (Contemplação e Ação)</h2>
+        <div class="phase-guide">"O que Deus transforma em mim e qual é a minha resposta prática?"</div>
+        <p class="instruction">O Salmo 50 culmina no descanso da misericórdia divina e no firme propósito de conversão.</p>
+
+        <div class="psalm-box">
+            <h3>"Sacrifício agradável a Deus é um espírito contrito; um coração contrito e humilhado, ó Deus, não o desprezareis."</h3>
+            <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.85rem;">Salmo 50 (51), v. 19</p>
+        </div>
+
+        <div class="meditatio-card" style="background:#fff;">
+            <h4>Ação de Restauração (Actio):</h4>
+            <p style="font-style:normal;">Assim como Davi prometeu ensinar os caminhos de Deus aos transgressores (v. 15), qual gesto prático de reconciliação ou caridade você fará esta semana?</p>
+            <textarea id="final-action" placeholder="Ex: Procurar a confissão sacramental, pedir perdão a uma pessoa, realizar um gesto de caridade oculta..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-secondary" onclick="goToPhase(3)">Voltar</button>
+            <button class="btn-outline" style="margin-top:0;" onclick="downloadTxt()">Baixar Diário em .txt</button>
+        </div>
+        <button class="btn" onclick="finishLectio()">Concluir a Lectio Divina</button>
+    </div>
+</div>
+
+<script>
+    // Estrutura teológica do Salmo 50
+    const correctStanzas = [
+        "1. Pedido de Misericórdia e Purificação (v. 3-4: 'Tende piedade... lava-me inteiramente')",
+        "2. Confissão e Reconhecimento da Iniquidade (v. 5-8: 'Reconheço meu pecado...')",
+        "3. Clamor pela Renovação do Coração (v. 11-14: 'Cria em mim um coração puro...')",
+        "4. Promessa de Louvor e Testemunho (v. 15-19: 'Abre meus lábios... espírito contrito')"
+    ];
+
+    let currentStanzas = [
+        "3. Clamor pela Renovação do Coração (v. 11-14: 'Cria em mim um coração puro...')",
+        "1. Pedido de Misericórdia e Purificação (v. 3-4: 'Tende piedade... lava-me inteiramente')",
+        "4. Promessa de Louvor e Testemunho (v. 15-19: 'Abre meus lábios... espírito contrito')",
+        "2. Confissão e Reconhecimento da Iniquidade (v. 5-8: 'Reconheço meu pecado...')"
+    ];
+
+    let currentPhase = 1;
+    let maxPhaseUnlocked = 1;
+
+    function renderStanzas() {
+        const list = document.getElementById('sortable-list');
+        list.innerHTML = '';
+        currentStanzas.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.className = 'sort-item';
+            li.innerHTML = `
+                <span class="stanza-text">${item}</span>
+                <div class="sort-controls">
+                    <button class="btn-mini" onclick="moveItem(${index}, -1)">▲</button>
+                    <button class="btn-mini" onclick="moveItem(${index}, 1)">▼</button>
+                </div>
+            `;
+            list.appendChild(li);
+        });
+    }
+
+    function moveItem(index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < currentStanzas.length) {
+            const temp = currentStanzas[index];
+            currentStanzas[index] = currentStanzas[newIndex];
+            currentStanzas[newIndex] = temp;
+            renderStanzas();
+        }
+    }
+
+    function checkLectio() {
+        const isCorrect = currentStanzas.every((val, index) => val === correctStanzas[index]);
+        const feedback = document.getElementById('lectio-feedback');
+        
+        if (isCorrect) {
+            feedback.className = "feedback success";
+            feedback.innerText = "Perfeito! Você ordenou corretamente a estrutura espiritual do Salmo 50.";
+            feedback.style.display = "block";
+            maxPhaseUnlocked = Math.max(maxPhaseUnlocked, 2);
+            setTimeout(() => {
+                goToPhase(2);
+            }, 1000);
+        } else {
+            feedback.className = "feedback error";
+            feedback.innerText = "A ordem das partes do Salmo ainda não está correta. Tente colocar do pedido inicial de perdão até a promessa de louvor.";
+            feedback.style.display = "block";
+        }
+    }
+
+    function advanceToPhase(nextPhase) {
+        if (nextPhase > maxPhaseUnlocked) {
+            maxPhaseUnlocked = nextPhase;
+        }
+        goToPhase(nextPhase);
+    }
+
+    function goToPhase(phaseNum) {
+        if (phaseNum > maxPhaseUnlocked) {
+            alert("Ordene a estrutura do Salmo no passo 1 antes de avançar para as demais etapas.");
+            return;
+        }
+
+        currentPhase = phaseNum;
+
+        document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+        document.getElementById(`phase-${phaseNum}`).classList.add('active');
+
+        updateStepperUI();
+    }
+
+    function updateStepperUI() {
+        document.querySelectorAll('.step-node').forEach((node, idx) => {
+            const step = idx + 1;
+            if (step === currentPhase) {
+                node.className = "step-node active";
+            } else if (step <= maxPhaseUnlocked) {
+                node.className = "step-node completed";
+            } else {
+                node.className = "step-node";
+            }
+        });
+    }
+
+    function downloadTxt() {
+        const med1 = document.getElementById('meditatio-1').value;
+        const med2 = document.getElementById('meditatio-2').value;
+        const med3 = document.getElementById('meditatio-3').value;
+
+        const ora1 = document.getElementById('oratio-1').value;
+        const ora2 = document.getElementById('oratio-2').value;
+        const ora3 = document.getElementById('oratio-3').value;
+
+        const actio = document.getElementById('final-action').value;
+
+        const content = `====================================================
+LECTIO DIVINA - SALMO 50 (51)
+O Clamor do Coração Contrito
+Data: ${new Date().toLocaleDateString('pt-BR')}
+====================================================
+
+--- 1. LECTIO (Leitura) ---
+Estrutura ordenada do Salmo:
+${currentStanzas.join('\n')}
+
+--- 2. MEDITATIO (Meditação) ---
+1. "Reconheço a minha iniquidade, e o meu pecado está sempre diante de mim." (v. 5)
+Resposta:
+${med1 || "(Não preenchido)"}
+
+2. "Cria em mim, ó Deus, um coração puro..." (v. 12)
+Resposta:
+${med2 || "(Não preenchido)"}
+
+3. "Abre, Senhor, os meus lábios, e a minha boca anunciará o teu louvor." (v. 17)
+Resposta:
+${med3 || "(Não preenchido)"}
+
+--- 3. ORATIO (Oração) ---
+1. "Tende piedade de mim, ó Deus, segundo a vossa misericórdia..." (v. 3)
+Oração:
+${ora1 || "(Não preenchido)"}
+
+2. "Lava-me inteiramente da minha iniquidade..." (v. 4)
+Oração:
+${ora2 || "(Não preenchido)"}
+
+3. "Restitui-me a alegria da tua salvação..." (v. 14)
+Oração:
+${ora3 || "(Não preenchido)"}
+
+--- 4. CONTEMPLATIO & ACTIO (Ação) ---
+Compromisso prático de restauração:
+${actio || "(Não preenchido)"}
+
+====================================================
+"Sacrifício agradável a Deus é um espírito contrito;
+um coração contrito e humilhado, ó Deus, não o desprezareis." (v. 19)
+====================================================`;
+
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Lectio_Divina_Salmo_50.txt';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function finishLectio() {
+        const action = document.getElementById('final-action').value;
+        if (!action.trim()) {
+            alert("Escreva o seu compromisso de restauração para concluir a oração.");
+            return;
+        }
+        alert("Lectio Divina do Salmo 50 concluída. Que Deus renove o seu espírito!");
+        location.reload();
+    }
+
+    renderStanzas();
+</script>
+
+</body>
+</html>
